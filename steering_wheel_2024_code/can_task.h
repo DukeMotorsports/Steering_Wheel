@@ -11,7 +11,20 @@
   static const twai_general_config_t  g_config = TWAI_GENERAL_CONFIG_DEFAULT((gpio_num_t)TX_GPIO_NUM, (gpio_num_t)RX_GPIO_NUM, TWAI_MODE_NO_ACK);
   static SemaphoreHandle_t tx_sem;
   
-  twai_message_t message, sensoric_message;         // CAN Message  LL;L;;;/Struct    
+  const twai_message_t sensoric_message = {
+    .identifier = 0x520, 
+    .data_length_code = 8,
+    .data = {
+      0x53, 
+      0x41,
+      0xC8,
+      0, 
+      0, 
+      0,
+      0,
+      0
+      } 
+  };         
 
 
 // Functions
@@ -19,6 +32,8 @@
 static void twai_transmit_task(void *arg){
     xSemaphoreTake(tx_sem, portMAX_DELAY);
     ESP_LOGI(BASE_TAG, "Transmit Thread Started");
+
+    bool last_button_1 = false; 
 
     while(1){
       digitalWrite(LED_BUILTIN, HIGH);
@@ -87,6 +102,11 @@ static void twai_transmit_task(void *arg){
 
 
         ESP_ERROR_CHECK(twai_transmit(&message1 , portMAX_DELAY));  // Force the ESP to restart if there is a transmitted error
+
+        if (button_1 && !last_button_1) {
+          ESP_ERROR_CHECK(twai_transmit(&sensoric_message , portMAX_DELAY));  // Force the ESP to restart if there is a transmitted error
+        }
+        last_button_1 = button_1; 
 
       digitalWrite(LED_BUILTIN, LOW);
       vTaskDelay(pdMS_TO_TICKS(10));    // Send updates @ 100 Hz
