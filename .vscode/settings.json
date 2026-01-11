@@ -14,5 +14,8 @@
     "--background-index",
     "--query-driver=**",
     "--compile-commands-dir=c:\\Users\\CKW09\\esp\\GPIO_Example\\build"
-  ]
+  ],
+  "idf.portWin": "COM20",
+  "idf.monitorPort": "COM20",
+  "idf.flashType": "UART"
 }
