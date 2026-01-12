@@ -1,12 +1,19 @@
-menu "Example Configuration"
+menu "Steering Wheel Project Configuration"
 
     orsource "$IDF_PATH/examples/common_components/env_caps/$IDF_TARGET/Kconfig.env_caps"
 
     config GPIO_INPUT_0
-        int "GPIO input pin 0"
+        int "GPIO input 0 pin number"
         range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
-        default 3
+        default 4
         help
-            GPIO pin number to be used as GPIO_INPUT_IO_0.
+            GPIO pin number to be used as GPIO_INPUT_0.
+    
+    config ADC_INPUT_0
+        int "ADC input 0 pin number"
+        range 2 4
+        default 2
+        help
+            GPIO pin number to be used as ADC_INPUT_0.
 
 endmenu
