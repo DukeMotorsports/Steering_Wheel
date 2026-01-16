@@ -7,10 +7,6 @@
 
 #include "input_handler.h"
 
-/* ------------------------------ Macros ------------------------------ */
-#define GPIO_INPUT_0    CONFIG_GPIO_INPUT_0
-#define ADC_INPUT_0     CONFIG_ADC_INPUT_0
-
 /* ------------------------------ Private Global Variables ------------------------------ */
 static adc_oneshot_unit_handle_t adc1_handle;
 static adc_cali_handle_t adc_cali_handle; 
@@ -48,10 +44,10 @@ void input_init(void) {
 }
 
 void update_inputs(input_data_t *input_data) {
-    input_data->digital_in_1 = gpio_get_level(GPIO_INPUT_0); 
+    input_data->digital_in_0 = gpio_get_level(GPIO_INPUT_0); 
 
     int adc_raw_1, analog_1_mV;  
     ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC_INPUT_0, &adc_raw_1));
     ESP_ERROR_CHECK(adc_cali_raw_to_voltage(adc_cali_handle, adc_raw_1, &analog_1_mV)); 
-    input_data->analog_in_1_mV = analog_1_mV; 
+    input_data->analog_in_0_mV = analog_1_mV; 
 }
