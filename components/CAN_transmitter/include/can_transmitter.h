@@ -1,0 +1,4 @@
+#ifndef CAN_TRANSMITTER_H
+#define CAN_TRANSMITTER_H
+
+#endif /* CAN_TRANSMITTER_H */
