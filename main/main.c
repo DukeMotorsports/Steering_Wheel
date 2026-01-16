@@ -15,7 +15,7 @@
 
 /* ------------------------------ Private Global Variables ------------------------------ */
 static const char *TAG = "main";
-static input_data_t input_data; 
+static input_data_t input_data = {0}; 
 
 /* ------------------------------ Public Function Definitions ------------------------------ */
 void app_main(void)
@@ -28,9 +28,9 @@ void app_main(void)
         update_inputs(&input_data);
         can_transmit(&input_data); 
 
-        ESP_LOGI(TAG, "GPIO 0 Value: %d", input_data.digital_in_0); 
-        ESP_LOGI(TAG, "Analog 0 Value: %.2f", input_data.analog_in_0_mV/1000.0);
+        // ESP_LOGI(TAG, "GPIO 0 Value: %d", input_data.digital_in_0); 
+        // ESP_LOGI(TAG, "Analog 0 Value: %.2f", input_data.analog_in_0_mV/1000.0);
 
-        vTaskDelay(1000/portTICK_PERIOD_MS);
+        vTaskDelay(100/portTICK_PERIOD_MS);
     }
 }
