@@ -16,4 +16,18 @@ menu "Steering Wheel Project Configuration"
         help
             GPIO pin number to be used as ADC_INPUT_0.
 
+    config CAN_TX
+        int "CAN TX pin number"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 6
+        help
+            GPIO pin number to be used as CAN_TX.
+
+    config CAN_RX
+        int "CAN RX pin number"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 7
+        help
+            GPIO pin number to be used as CAN_RX.
+
 endmenu
