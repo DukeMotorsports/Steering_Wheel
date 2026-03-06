@@ -10,26 +10,26 @@
 #define STEERING_WHEEL_CAN_ID       0x661
 
 /* ------------------------------ Structs ------------------------------ */
-typedef struct digital_io_data {
-    uint8_t btn0 : 1; 
-    uint8_t btn1 : 1; 
-    uint8_t btn2 : 1; 
-    uint8_t btn3 : 1; 
-    uint8_t btn4 : 1; 
-    uint8_t btn5 : 1; 
-    uint8_t btn6 : 1; 
-    uint8_t btn7 : 1; 
-} digital_io_data_t;
+typedef struct btn_data {
+    uint8_t down_shift : 1; 
+    uint8_t up_shift : 1; 
+    uint8_t left_menu : 1; 
+    uint8_t right_menu : 1; 
+    uint8_t bspd_reset : 1; 
+    uint8_t launch_control : 1; 
+    uint8_t reserved1 : 1; 
+    uint8_t reserved2 : 1; 
+} btn_data_t;
 
 typedef struct can_msg {
-    digital_io_data_t digital_io_data; 
-    uint8_t modes_status;               // Currently unused
-    uint8_t screen_btns;                // Currently unused
-    uint8_t clutch_pot_h; 
-    uint8_t clutch_pot_l; 
-    uint8_t reserved1;                  // Reserved for future use
-    uint8_t reserved2; 
-    uint8_t reserved3; 
+    btn_data_t digital_io_data; 
+    uint8_t clutch_pot_h;    
+    uint8_t clutch_pot_l;
+    uint8_t reserved_1; 
+    uint8_t reserved_2; 
+    uint8_t reserved_3;                  
+    uint8_t reserved_4; 
+    uint8_t reserved_5; 
 } can_msg_t; 
 
 /* ------------------------------ Public Function Declarations ------------------------------ */

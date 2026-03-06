@@ -23,14 +23,21 @@ void can_transmit_init() {
 } 
 void can_transmit(input_data_t *input_data) {
     can_msg_t can_msg = {0}; 
-    can_msg.digital_io_data.btn2 = input_data->digital_in_0; 
-    can_msg.clutch_pot_h = ((input_data->analog_in_0_mV & 0xFF00)>>8);
-    can_msg.clutch_pot_l = (input_data->analog_in_0_mV & 0x00FF);
+
+    can_msg.digital_io_data.up_shift = input_data->up_shift; 
+    can_msg.digital_io_data.down_shift = input_data->down_shift; 
+    can_msg.digital_io_data.left_menu = input_data->left_menu_btn; 
+    can_msg.digital_io_data.right_menu = input_data->right_menu_btn; 
+    can_msg.digital_io_data.bspd_reset = input_data->bspd_reset; 
+    can_msg.digital_io_data.launch_control = input_data->launch_control; 
+
+    can_msg.clutch_pot_h = ((input_data->clutch_mV & 0xFF00)>>8);
+    can_msg.clutch_pot_l = (input_data->clutch_mV & 0x00FF);
 
     twai_frame_t tx_msg = {
         .header.id = STEERING_WHEEL_CAN_ID,     // Message ID
         .header.ide = false,                    // Use 29-bit extended ID format
-        .buffer = (uint8_t *) &can_msg,                      // Pointer to data to transmit
+        .buffer = (uint8_t *) &can_msg,         // Pointer to data to transmit
         .buffer_len = sizeof(can_msg),          // Length of data to transmit
     };
     ESP_ERROR_CHECK(twai_node_transmit(node_hdl, &tx_msg, 0));  // Timeout = 0: returns immediately if queue is full

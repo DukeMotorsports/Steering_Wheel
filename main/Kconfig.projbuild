@@ -2,31 +2,80 @@ menu "Steering Wheel Project Configuration"
 
     orsource "$IDF_PATH/examples/common_components/env_caps/$IDF_TARGET/Kconfig.env_caps"
 
-    config GPIO_INPUT_0
-        int "GPIO input 0 pin number"
+    config SW1_GPIO_PIN
+        int "SW1 GPIO pin number"
         range 0 21
         default 4
         help
-            GPIO pin number to be used as GPIO_INPUT_0.
+            GPIO pin number corresponding to driver switch 1.
     
-    config ADC_INPUT_0
-        int "ADC input 0 pin number"
+    config SW2_GPIO_PIN
+        int "SW2 GPIO pin number"
+        range 0 21
+        default 5
+        help
+            GPIO pin number corresponding to driver switch 2.
+    
+    config SW3_GPIO_PIN
+        int "SW3 GPIO pin number"
+        range 0 21
+        default 6
+        help
+            GPIO pin number corresponding to driver switch 3.
+    
+    config SW4_GPIO_PIN
+        int "SW4 GPIO pin number"
+        range 0 21
+        default 7
+        help
+            GPIO pin number corresponding to driver switch 4.
+    
+    config SW5_GPIO_PIN
+        int "SW5 GPIO pin number"
+        range 0 21
+        default 10
+        help
+            GPIO pin number corresponding to driver switch 5.
+    
+    config UPSHIFT_GPIO_PIN
+        int "Upshift paddle GPIO pin number"
+        range 0 21
+        default 9
+        help
+            GPIO pin number corresponding to upshift paddle.
+    
+    config DOWNSHIFT_GPIO_PIN
+        int "Downshift paddle GPIO pin number"
+        range 0 21
+        default 8
+        help
+            GPIO pin number corresponding to downshift paddle.
+    
+    config LEFT_CLUTCH_ADC_INPUT
+        int "Left clutch paddle ADC input pin number"
         range 2 4
         default 2
         help
-            GPIO pin number to be used as ADC_INPUT_0.
+            GPIO pin number corresponding to left clutch paddle.
+    
+    config RIGHT_CLUTCH_ADC_INPUT
+        int "Right clutch paddle ADC input pin number"
+        range 2 4
+        default 3
+        help
+            GPIO pin number corresponding to right clutch paddle.
 
     config CAN_TX
         int "CAN TX pin number"
         range 0 21
-        default 6
+        default 21
         help
             GPIO pin number to be used as CAN_TX.
 
     config CAN_RX
         int "CAN RX pin number"
         range 0 21
-        default 7
+        default 20
         help
             GPIO pin number to be used as CAN_RX.
 
