@@ -29,7 +29,9 @@ void can_transmit(input_data_t *input_data) {
     can_msg.digital_io_data.left_menu = input_data->left_menu_btn; 
     can_msg.digital_io_data.right_menu = input_data->right_menu_btn; 
     can_msg.digital_io_data.bspd_reset = input_data->bspd_reset; 
-    can_msg.digital_io_data.launch_control = input_data->launch_control; 
+    can_msg.digital_io_data.alarm_ack = input_data->alarm_ack; 
+    can_msg.digital_io_data.clear_sc = input_data->clear_sc; 
+
 
     can_msg.clutch_pot_h = ((input_data->clutch_mV & 0xFF00)>>8);
     can_msg.clutch_pot_l = (input_data->clutch_mV & 0x00FF);

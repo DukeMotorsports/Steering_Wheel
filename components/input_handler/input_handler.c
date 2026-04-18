@@ -52,7 +52,8 @@ void update_inputs(input_data_t *input_data) {
     input_data->down_shift = !gpio_get_level(DOWNSHIFT_PADDLE);
     input_data->left_menu_btn = !gpio_get_level(BTN_1);
     input_data->right_menu_btn = !gpio_get_level(BTN_2);
-    input_data->launch_control= !gpio_get_level(BTN_4); 
+    input_data->clear_sc = !gpio_get_level(BTN_3);
+    input_data->alarm_ack = !gpio_get_level(BTN_4); 
     input_data->bspd_reset = !gpio_get_level(BTN_5);  
 
     int adc_raw, left_clutch_mV, right_clutch_mV;  

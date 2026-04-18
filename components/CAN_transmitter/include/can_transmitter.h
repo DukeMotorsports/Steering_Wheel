@@ -16,9 +16,9 @@ typedef struct btn_data {
     uint8_t left_menu : 1; 
     uint8_t right_menu : 1; 
     uint8_t bspd_reset : 1; 
-    uint8_t launch_control : 1; 
+    uint8_t alarm_ack : 1; 
+    uint8_t clear_sc : 1; 
     uint8_t reserved1 : 1; 
-    uint8_t reserved2 : 1; 
 } btn_data_t;
 
 typedef struct can_msg {

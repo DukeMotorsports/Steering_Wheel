@@ -19,8 +19,9 @@ typedef struct input_data {
     int left_menu_btn; 
     int right_menu_btn; 
     int bspd_reset; 
-    int launch_control;
+    int alarm_ack;
     int clutch_mV; 
+    int clear_sc;
 } input_data_t; 
 
 /* ------------------------------ Public Function Declarations ------------------------------ */
