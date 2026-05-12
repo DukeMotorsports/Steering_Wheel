@@ -21,6 +21,7 @@ void can_transmit_init() {
     // Start the TWAI controller
     ESP_ERROR_CHECK(twai_node_enable(node_hdl));
 } 
+
 void can_transmit(input_data_t *input_data) {
     can_msg_t can_msg = {0}; 
 

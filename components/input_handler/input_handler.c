@@ -1,6 +1,7 @@
 /* ------------------------------ Includes ------------------------------ */
-#include "driver/gpio.h"
+#include <math.h>
 
+#include "driver/gpio.h"
 #include "hal/adc_types.h"
 #include "esp_adc/adc_oneshot.h"
 #include "esp_adc/adc_cali.h"
@@ -61,5 +62,5 @@ void update_inputs(input_data_t *input_data) {
     ESP_ERROR_CHECK(adc_cali_raw_to_voltage(adc_cali_handle, adc_raw, &left_clutch_mV)); 
     ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, RIGHT_CLUTCH, &adc_raw));
     ESP_ERROR_CHECK(adc_cali_raw_to_voltage(adc_cali_handle, adc_raw, &right_clutch_mV)); 
-    input_data->clutch_mV = right_clutch_mV>left_clutch_mV ? right_clutch_mV : left_clutch_mV; 
+    input_data->clutch_mV = fmax(left_clutch_mV, right_clutch_mV); 
 }
